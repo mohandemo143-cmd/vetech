@@ -5,45 +5,43 @@ import {
   Phone,
   MapPin,
   Globe,
-  // Brand icons removed from lucide-react
-  // Using generic alternatives
-  Users,        // for LinkedIn
-  Share2,       // for Facebook
-  MessageCircle, // for Twitter/X
 } from "lucide-react";
-
-import { Logo } from "./Logo";
 
 import { services, company } from "@/lib/data";
 
 export function Footer() {
   return (
     <footer className="bg-charcoal text-white/80">
-      <div className="container-x py-16 grid lg:grid-cols-12 gap-10">
-        
-        <div className="lg:col-span-4">
-          <Logo light />
+      {/* Top Accent */}
+      <div className="h-1 bg-brand-red" />
 
-          <p className="mt-5 text-sm text-white/60 leading-relaxed max-w-sm">
-            Precision-driven NDT & Metallurgical inspection partner
-            for aerospace, defence, oil & gas and engineering
-            industries since 25+ years.
+      <div className="container-x py-16 grid lg:grid-cols-12 gap-10">
+
+        {/* Company Intro */}
+        <div className="lg:col-span-4">
+
+          <span className="inline-block text-xs uppercase tracking-[0.3em] text-brand-red font-semibold">
+            VETECH
+          </span>
+
+          <h3 className="mt-3 text-2xl font-bold text-white leading-tight">
+            Engineering Trust Through
+            Inspection Excellence
+          </h3>
+
+          <div className="mt-4 h-[2px] w-20 bg-brand-red" />
+
+          <p className="mt-6 text-sm text-white/60 leading-relaxed max-w-sm">
+            Precision-driven Non-Destructive Testing,
+            Metallurgical Analysis and Quality Assurance
+            partner supporting aerospace, defence,
+            oil & gas, power generation and engineering
+            industries for over 25 years.
           </p>
 
-          <div className="flex gap-3 mt-6">
-            {[Users, MessageCircle, Share2].map((Icon, i) => (
-              <a
-                key={i}
-                href="#"
-                className="h-9 w-9 grid place-items-center border border-white/15 hover:border-brand-red hover:text-brand-red transition-colors"
-                aria-label="Social link"
-              >
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
         </div>
 
+        {/* Company Links */}
         <div className="lg:col-span-2">
           <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
             Company
@@ -70,6 +68,7 @@ export function Footer() {
           </ul>
         </div>
 
+        {/* Services */}
         <div className="lg:col-span-3">
           <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
             Services
@@ -91,12 +90,14 @@ export function Footer() {
           </ul>
         </div>
 
+        {/* Contact */}
         <div className="lg:col-span-3">
           <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
             Contact
           </h4>
 
-          <ul className="space-y-3 text-sm">
+          <ul className="space-y-4 text-sm">
+
             <li className="flex gap-3">
               <MapPin className="h-4 w-4 text-brand-red shrink-0 mt-0.5" />
               <span>{company.address}</span>
@@ -104,12 +105,13 @@ export function Footer() {
 
             <li className="flex gap-3">
               <Mail className="h-4 w-4 text-brand-red shrink-0 mt-0.5" />
+
               <div>
                 {company.emails.map((e) => (
                   <a
                     key={e}
                     href={`mailto:${e}`}
-                    className="block hover:text-brand-red"
+                    className="block hover:text-brand-red transition-colors"
                   >
                     {e}
                   </a>
@@ -119,12 +121,13 @@ export function Footer() {
 
             <li className="flex gap-3">
               <Phone className="h-4 w-4 text-brand-red shrink-0 mt-0.5" />
+
               <div>
                 {company.phones.map((p) => (
                   <a
                     key={p}
                     href={`tel:${p.replace(/\s/g, "")}`}
-                    className="block hover:text-brand-red"
+                    className="block hover:text-brand-red transition-colors"
                   >
                     {p}
                   </a>
@@ -134,23 +137,50 @@ export function Footer() {
 
             <li className="flex gap-3">
               <Globe className="h-4 w-4 text-brand-red shrink-0 mt-0.5" />
-              <span>{company.website}</span>
+
+              <a
+                href={`https://${company.website}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-red transition-colors"
+              >
+                {company.website}
+              </a>
             </li>
+
           </ul>
         </div>
+
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="container-x py-5 flex flex-col md:flex-row justify-between gap-3 text-xs text-white/50">
-          <p>
-            © {new Date().getFullYear()} VETECH NDT &
-            Metallurgical Services Pvt. Ltd.
-            All rights reserved.
-          </p>
+      {/* Bottom Bar */}
+    <div className="border-t border-white/10">
+  <div className="container-x py-5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
 
-          <p>GST: {company.gst}</p>
-        </div>
-      </div>
+    <p>
+      © {new Date().getFullYear()} VETECH NDT &
+      Metallurgical Services Pvt. Ltd.
+      All rights reserved.
+    </p>
+
+<p className="text-center">
+  Designed & Developed by{" "}
+  <a
+    href="https://www.ameyait.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-brand-red font-semibold hover:text-brand-red transition-colors"
+  >
+    Ameya IT Solutions
+  </a>
+</p>
+
+    <p>
+      GST: {company.gst}
+    </p>
+
+  </div>
+</div>
     </footer>
   );
 }

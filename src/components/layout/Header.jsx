@@ -17,44 +17,23 @@ const nav = [
 ];
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   const pathname = usePathname();
-
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    onScroll();
-
-    window.addEventListener("scroll", onScroll);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
   return (
-    <header
-      className={
-        `fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-white/95 backdrop-blur border-b border-border shadow-sm"
-            : "bg-transparent"
-        }`
-      }
-    >
+    <header className="fixed top-0 inset-x-0 z-50 bg-white border-b border-border shadow-sm">
       <div className="container-x flex items-center justify-between h-18 py-3">
+        {/* Logo */}
         <Link href="/" aria-label="Vetech home">
           <Logo />
         </Link>
 
+        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-1">
           {nav.map((n) => {
             const active =
@@ -65,13 +44,11 @@ export function Header() {
               <Link
                 key={n.href}
                 href={n.href}
-                className={
-                  `px-4 py-2 text-sm font-medium transition-colors relative ${
-                    active
-                      ? "text-brand-red"
-                      : "text-charcoal hover:text-brand-red"
-                  }`
-                }
+                className={`px-4 py-2 text-sm font-medium transition-colors relative ${
+                  active
+                    ? "text-brand-red"
+                    : "text-charcoal hover:text-brand-red"
+                }`}
               >
                 {n.label}
 
@@ -83,6 +60,7 @@ export function Header() {
           })}
         </nav>
 
+        {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-3">
           <a
             href="tel:+918919076338"
@@ -103,6 +81,7 @@ export function Header() {
           </Link>
         </div>
 
+        {/* Mobile Menu Button */}
         <button
           className="lg:hidden p-2 text-charcoal"
           onClick={() => setOpen(!open)}
@@ -116,6 +95,7 @@ export function Header() {
         </button>
       </div>
 
+      {/* Mobile Menu */}
       {open && (
         <div className="lg:hidden bg-white border-t border-border">
           <nav className="container-x py-4 flex flex-col gap-1">

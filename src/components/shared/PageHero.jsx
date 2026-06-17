@@ -5,7 +5,7 @@ export function PageHero({
   eyebrow,
 }) {
   return (
-    <section className="relative h-[55vh] min-h-[420px] flex items-end overflow-hidden">
+    <section className="relative -mt-[73px] h-[55vh] min-h-[420px] flex items-end overflow-hidden">
 
       {/* BACKGROUND IMAGE */}
       <div
